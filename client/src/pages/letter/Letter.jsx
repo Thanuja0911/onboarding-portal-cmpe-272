@@ -127,7 +127,6 @@ const Letter = (props)=>{
                   <br/>
                   <br/>
                   Congratulations on your offer!
-                  We are looking forward to see you join the team.
                   <br/>
                   <br/>
                 </p>

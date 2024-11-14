@@ -3,11 +3,11 @@ import api from "../../shared/api"
 //import msal from "@azure/msal-browser";
 import { PublicClientApplication } from "@azure/msal-browser"
 const baseURL = process.env.REACT_APP_BACKEND_URL;
-
+console.log(baseURL);
 
 export const signup = (data) => async (dispatch) => {
     try {
-      const res = await axios.post(`http://localhost:3001/users/register`, data);
+      const res = await axios.post(`${baseURL}/api/users/register`, data);
       await dispatch({
         type: "SUCCESS_DATA",
         payload: "Account created Successfully",
@@ -25,7 +25,7 @@ export const signup = (data) => async (dispatch) => {
 
   export const signin = (data) => async (dispatch) => {
     try {
-      const res = await axios.post(`http://localhost:3001/users/login`, data);
+      const res = await axios.post(`${baseURL}/api/users/login`, data);
       await dispatch({
         type: "SUCCESS_DATA",
         payload: "Login Success",
@@ -51,7 +51,7 @@ export const signup = (data) => async (dispatch) => {
 
 export const verifyToken = (token)=> async(dispatch) => {
   try{
-    const res = await axios.get(`http://localhost:3001/users/verify_token`)
+    const res = await axios.get(`${baseURL}/api/users/verify_token`)
     return res
   }catch(err){
    // window.location.href = "/signin";
@@ -68,7 +68,7 @@ export const signout = () => async (dispatch) => {
 
 export const getEmployee = (id)=> async (dispatch)=>{
   try{
-    const res = await axios.get(`http://localhost:3001/users/user/${id}`)
+    const res = await axios.get(`${baseURL}/users/user/${id}`)
     console.log(res)
     dispatch({type:"GET_EMPLOYEE", payload: {employee: res.data.employee}})
     return res.data.employee
@@ -80,7 +80,7 @@ export const getEmployee = (id)=> async (dispatch)=>{
 
 export const generateCSV = ()=> async(dispatch)=>{
   try{
-    const res = await axios.get(`http://localhost:3001/users/getcsv`)
+    const res = await axios.get(`${baseURL}/users/getcsv`)
     console.log(res)
   }catch(err){
     dispatch({type:"SET_ALERT", payload: {message:"Failed to generate CSV"}})
@@ -89,7 +89,7 @@ export const generateCSV = ()=> async(dispatch)=>{
 
 export const getAllEmployee = ()=> async (dispatch)=>{
   try{
-    const res = await axios.get(`http://localhost:3001/users/allemployee`)
+    const res = await axios.get(`${baseURL}/users/allemployee`)
     console.log(res)
     dispatch({type:"GET_ALL_EMPLOYEE", payload: {all_employee: res.data.all_employee}})
     await dispatch(getPendingEmployee())
@@ -100,7 +100,7 @@ export const getAllEmployee = ()=> async (dispatch)=>{
 
 export const getPendingEmployee = ()=> async (dispatch)=>{
   try{
-    const res = await axios.get(`http://localhost:3001/users/pendingemployee`)
+    const res = await axios.get(`${baseURL}/users/pendingemployee`)
     console.log(res)
     dispatch({type:"GET_PENDING_EMPLOYEE", payload: {pending_employee: res.data.pending_employee}})
   }catch(err){
@@ -110,7 +110,7 @@ export const getPendingEmployee = ()=> async (dispatch)=>{
 
 export const getSinglePendingEmployee = (id)=> async (dispatch)=>{
   try{
-    const res = await axios.get(`http://localhost:3001/users/pendingemployee/${id}`)
+    const res = await axios.get(`${baseURL}/users/pendingemployee/${id}`)
     //console.log(res)
     dispatch({type:"GET_SINGLE_PENDING_EMPLOYEE", payload: {single_pending_employee: res.data.employee}})
   }catch(err){
@@ -121,7 +121,7 @@ export const getSinglePendingEmployee = (id)=> async (dispatch)=>{
 
 export const addEmployee = (data)=> async(dispatch)=>{
   try{
-    const res = await axios.post(`http://localhost:3001/users/newemployee`,data)
+    const res = await axios.post(`${baseURL}/users/newemployee`,data)
     console.log(res)
     await dispatch({
       type: "SUCCESS_DATA",
@@ -137,7 +137,7 @@ export const addEmployee = (data)=> async(dispatch)=>{
 
 export const updateEmployee = (data)=> async(dispatch)=>{
   try{
-    const res = await axios.put(`http://localhost:3001/users/update`, data)
+    const res = await axios.put(`${baseURL}/users/update`, data)
     console.log(res)
   }catch(err){
     console.log(err)
@@ -147,7 +147,7 @@ export const updateEmployee = (data)=> async(dispatch)=>{
 
 export const getEmployeeInfo = (id) => async(dispatch)=>{
   try{
-    const res = await axios.get(`http://localhost:3001/users/employee/${id}`)
+    const res = await axios.get(`${baseURL}/users/employee/${id}`)
     console.log(res)
     dispatch({type:"GET_EMPLOYEE_INFO", payload: {employee_info: res}})
   }catch(err){
@@ -158,7 +158,7 @@ export const getEmployeeInfo = (id) => async(dispatch)=>{
 export const addMultipleEmployee = (data)=> async(dispatch)=>{
   try{
     console.log(data)
-    const res = await axios.post(`http://localhost:3001/users/multipleemployee`,data)
+    const res = await axios.post(`${baseURL}/users/multipleemployee`,data)
     console.log(res)
     await dispatch({
       type: "SUCCESS_DATA",
@@ -174,7 +174,7 @@ export const addMultipleEmployee = (data)=> async(dispatch)=>{
 export const getLetter = (id)=> async(dispatch)=>{
   try{
 
-    let res = await axios.get(`http://localhost:3001/users/letter/${id}`)
+    let res = await axios.get(`${baseURL}/users/letter/${id}`)
     console.log(res)
     await dispatch({type: "GET_NEWJOINEE", payload: {newjoinee: res.data.employee}})
     return true
@@ -187,7 +187,7 @@ export const getLetter = (id)=> async(dispatch)=>{
 
 export const registerUser = (id, data)=> async(dispatch)=>{
   try{
-    let res = await axios.post(`http://localhost:3001/users/register_user/${id}`, data)
+    let res = await axios.post(`${baseURL}/users/register_user/${id}`, data)
     console.log(res)
     await dispatch({
       type: "SUCCESS_DATA",
@@ -202,7 +202,7 @@ export const registerUser = (id, data)=> async(dispatch)=>{
 
 export const rejectUser = (id)=> async(dispatch)=>{
   try{
-    let res = await axios.post(`http://localhost:3001/users/reject_user/${id}`)
+    let res = await axios.post(`${baseURL}/users/reject_user/${id}`)
     console.log(res)
     await dispatch({
       type: "SUCCESS_DATA",
@@ -217,7 +217,7 @@ export const rejectUser = (id)=> async(dispatch)=>{
 
 export const rejectCandidate = (id)=> async(dispatch)=>{
   try{
-    let res = await axios.post(`http://localhost:3001/users/reject_candidate/${id}`)
+    let res = await axios.post(`${baseURL}/users/reject_candidate/${id}`)
     console.log(res)
     await dispatch({
       type: "SUCCESS_DATA",
@@ -271,7 +271,7 @@ const msalConfig = {
       clientId: '38292dd9-a239-4d5c-aca1-ad0295026966',
       // comment out if you use a multi-tenant AAD app
       authority: 'https://login.microsoftonline.com/common',
-      redirectUri: 'http://localhost:3001'
+      redirectUri: 'http://localhost:3000'
   }
 };
 
@@ -291,7 +291,7 @@ export const createMAccount = ()=> async(dispatch)=>{
     await signIn();
     let token = await getToken();
     console.log(token);
-    let res = await axios.post(`http://localhost:3001/users/createa`,{token: token})
+    let res = await axios.post(`${baseURL}/users/createa`,{token: token})
     // console.log(res)
     return res
   }catch(err){
@@ -303,7 +303,7 @@ export const createMAccount = ()=> async(dispatch)=>{
 
 export const getItEmployee = (type)=> async(dispatch)=>{
   try{
-    let res = await axios.get(`http://localhost:3001/users/it_employee?type=${type}`)
+    let res = await axios.get(`${baseURL}/users/it_employee?type=${type}`)
     console.log(res)
     await dispatch({
       type: "SET_IT_EMPLOYEE",
@@ -317,7 +317,7 @@ export const getItEmployee = (type)=> async(dispatch)=>{
 
 export const getTrainedEmployee = (type)=> async(dispatch)=>{
   try{
-    let res = await axios.get(`http://localhost:3001/users/trained_employee?type=${type}`)
+    let res = await axios.get(`${baseURL}/users/trained_employee?type=${type}`)
     console.log(res)
     await dispatch({
       type: "SET_TRAINED_EMPLOYEE",
@@ -332,7 +332,7 @@ export const getTrainedEmployee = (type)=> async(dispatch)=>{
 export const changeAllocation = (id)=> async(dispatch)=>{
   try{
     console.log(id)
-    let res = await axios.post(`http://localhost:3001/users/allocate`, {id: id})
+    let res = await axios.post(`${baseURL}/users/allocate`, {id: id})
     console.log(res)
     dispatch(getItEmployee("all"))
   }catch(err){
@@ -343,7 +343,7 @@ export const changeAllocation = (id)=> async(dispatch)=>{
 
 export const addEmployeeMessage = (id, employeeMessage) => async(dispatch)=>{
   try{
-    let res = await axios.post(`http://localhost:3001/users/add-message`, {id: id, employeeMessage: employeeMessage})
+    let res = await axios.post(`${baseURL}/users/add-message`, {id: id, employeeMessage: employeeMessage})
     return res
   }catch(err){
     console.log(err)
@@ -353,7 +353,7 @@ export const addEmployeeMessage = (id, employeeMessage) => async(dispatch)=>{
 
 export const addTrainingMessage = (id, trainingMessage) => async(dispatch)=>{
   try{
-    let res = await axios.post(`http://localhost:3001/users/add-train-message`, {id: id, trainingMessage: trainingMessage})
+    let res = await axios.post(`${baseURL}/users/add-train-message`, {id: id, trainingMessage: trainingMessage})
     return res
   }catch(err){
     console.log(err)
@@ -364,7 +364,7 @@ export const addTrainingMessage = (id, trainingMessage) => async(dispatch)=>{
 export const changeTraining = (id)=> async(dispatch)=>{
   try{
     console.log(id)
-    let res = await axios.post(`http://localhost:3001/users/train`, {id: id})
+    let res = await axios.post(`${baseURL}/users/train`, {id: id})
     console.log(res)
     dispatch(getTrainedEmployee("all"))
   }catch(err){
