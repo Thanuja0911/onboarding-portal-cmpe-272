@@ -29,7 +29,7 @@ const Letter = (props)=>{
     const openNotification = (err) => {
       notification["error"]({
         message: "Error in letter",
-        description: err.message,
+        // description: err.message,
         onClose: close,
       });
     };  

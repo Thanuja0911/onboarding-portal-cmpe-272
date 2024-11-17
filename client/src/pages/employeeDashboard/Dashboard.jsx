@@ -33,7 +33,7 @@ const UserDashboard = (props)=>{
 const openNotification = (err) => {
   notification["error"]({
     message: "Error",
-    description: err.message,
+    // description: err.message,
     onClose: close,
   });
 };

@@ -53,7 +53,7 @@ const EmployeeLanding = (props)=>{
   const openNotification = (err) => {
     notification["error"]({
       message: "Error in getEmployee",
-      description: err.message,
+      // description: err.message,
       onClose: close,
     });
   };

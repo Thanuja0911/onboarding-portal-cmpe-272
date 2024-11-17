@@ -72,7 +72,7 @@ const close = () => {
 const openNotification = (err) => {
   notification["error"]({
     message: "Error in dashboard",
-    description: err.message,
+    // description: err.message,
     onClose: close,
   });
 };
