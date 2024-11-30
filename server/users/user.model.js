@@ -23,6 +23,10 @@ const user_schema = new Schema(
       type: String,
       required: true
     },
+    verificationCode: {
+      type: String, 
+      default: null // Default value is null if no verification code is set
+    }
   },
   {
     timestamps: true,

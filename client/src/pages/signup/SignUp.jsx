@@ -92,6 +92,7 @@ const SignUp = (props) => {
             margin="normal"
             onChange={(e) => setName(e.target.value)}
             value={name}
+            style={{ marginTop: "0px" }}
           />
           <TextField
             label="Email"
@@ -100,6 +101,7 @@ const SignUp = (props) => {
             margin="normal"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            style={{ marginTop: "0px" }}
           />
           {/* <TextField
             label="Phone Number"
@@ -117,6 +119,7 @@ const SignUp = (props) => {
             margin="normal"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            style={{ marginTop: "0px" }}
           />
           <TextField
             label="Confirm Password"
@@ -126,8 +129,9 @@ const SignUp = (props) => {
             margin="normal"
             onChange={(e) => setConfirmPassword(e.target.value)}
             value={confirmPassword}
+            style={{ marginTop: "0px" }}
           />
-          <FormControl fullWidth margin="normal">
+          <FormControl fullWidth margin="normal" style={{ marginTop: "0px" }}>
             <InputLabel>Role</InputLabel>
             <Select value={role} onChange={(e) => setRole(e.target.value)}>
               <MenuItem value="admin">Admin</MenuItem>
@@ -142,7 +146,7 @@ const SignUp = (props) => {
               />
             }
             label="I agree to the Terms & Conditions"
-            style={{ marginTop: "10px" }}
+            // style={{ marginTop: "10px" }}
           />
           <Button
             variant="contained"

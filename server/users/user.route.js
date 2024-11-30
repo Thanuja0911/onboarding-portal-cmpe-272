@@ -1,9 +1,9 @@
-import express, { request } from "express"
-const router = express.Router()
+import express, { request } from "express";
+const router = express.Router();
 import { authorize } from "../auth/auth.middleware.js";
 import { Employee, PendingEmployee } from "../employee/employee.model.js";
 import { User } from "./user.model.js";
-import {registerValidation, loginValidation} from "../helpers/schemas.js"
+import { registerValidation, loginValidation } from "../helpers/schemas.js";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -11,10 +11,9 @@ import { config } from "dotenv";
 import sgMail from '@sendgrid/mail'
 config()
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-
-const passwordHtml = (emp, password)=>{
+const passwordHtml = (emp, password) => {
     return `
         <p>Dear ${emp.name},</p>
         <br/>
@@ -33,8 +32,20 @@ const passwordHtml = (emp, password)=>{
         Sincerely,<br/>
         Hiring Manager,
         </p>
-    `
-}
+    `;
+};
+
+const verificationEmailHtml = (verificationCode) => {
+    return `
+        <p>Your verification code is: <strong>${verificationCode}</strong></p>
+        <p>Please use this code to verify your identity.</p>
+    `;
+};
+
+const generateRandomCode = () => {
+    return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
+};
+    
 router.post('/register', async (req, res) => {
     //res.send('Register')
 
@@ -125,16 +136,106 @@ router.post('/register', async (req, res) => {
     }
  })
 
- 
-/*
- router.put('/reset_password', async(req,res)=>{
-     try{
-        
-     }catch(err){
+// POST: Send Verification Code
+router.post('/send-verification-code', async (req, res) => {
+    try {
+        console.log("Request received for sending verification code:", req.body);
+        const { email } = req.body;
 
-     }
- })
-*/
+        if (!email) {
+            console.log("No email provided");
+            return res.status(400).send({ message: "Email is required" });
+        }
+
+        // Check if the user with the email exists
+        const user = await User.findOne({ email });
+        console.log("User found:", user);
+
+        if (!user) {
+            console.log("User not found with the provided email:", email);
+            return res.status(404).send({ message: "User not found" });
+        }
+
+        // Generate verification code
+        const verificationCode = Math.floor(100000 + Math.random() * 900000);
+        console.log("Generated verification code:", verificationCode);
+
+        // Send email
+        const msg = {
+            to: email,
+            from: 'mthanuja1120@gmail.com',
+            subject: 'Verification Code',
+            text: `Your verification code is: ${verificationCode}`,
+            html: `<strong>Your verification code is: ${verificationCode}</strong>`,
+        };
+
+        console.log("Sending email with SendGrid...");
+        await sgMail.send(msg);
+        console.log("Email sent successfully");
+
+        // Save the verification code (if needed)
+        user.verificationCode = verificationCode;
+        await user.save();
+
+        return res.status(200).send({ message: "Verification code sent successfully" });
+    } catch (error) {
+        console.error("Error occurred while sending verification code:", error);
+        return res.status(500).send({ message: "Internal Server Error", error: error.message });
+    }
+});
+
+
+// POST: Verify Code
+router.post('/verify-code', async (req, res) => {
+    try {
+        const { email, code } = req.body;
+        const user = await User.findOne({ email });
+
+        // Debugging Information
+        console.log(`Email from request: ${email}`);
+        console.log(`Code from request: ${code}`);
+        if (user) {
+            console.log(`User found: ${user.email}`);
+            console.log(`Stored verification code: ${user.verificationCode}`);
+        } else {
+            console.log('No user found with the given email');
+        }
+
+        if (!user || user.verificationCode !== code) {
+            return res.status(400).send({ message: "Invalid verification code" });
+        }
+
+        res.status(200).send({ message: "Code verified" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: "Error verifying code" });
+    }
+});
+
+
+
+// POST: Reset Password
+router.post('/reset-password', async (req, res) => {
+    try {
+        const { email, newPassword } = req.body;
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(400).send({ message: "User not found" });
+        }
+
+        // Hash the new password
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(newPassword, salt);
+        user.verificationCode = null; // Clear the verification code after successful reset
+        await user.save();
+
+        res.status(200).send({ message: "Password reset successful" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: "Error resetting password" });
+    }
+});
 
 const randomPass = ()=>{
     var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";

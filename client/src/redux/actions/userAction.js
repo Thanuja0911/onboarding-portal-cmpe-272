@@ -372,3 +372,36 @@ export const changeTraining = (id)=> async(dispatch)=>{
     dispatch({type:"SET_ALERT", payload: {message:err.response}})
   }
 }
+
+// Send Verification Code to Email
+export const sendVerificationCode = (data) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${baseURL}/api/users/send-verification-code`, data);
+    return res.data;
+  } catch (error) {
+    dispatch({ type: "SET_ALERT", payload: { message: error.response } });
+    throw error;
+  }
+};
+
+// Verify Code
+export const verifyCode = (data) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${baseURL}/api/users/verify-code`, data);
+    return res.data;
+  } catch (error) {
+    dispatch({ type: "SET_ALERT", payload: { message: error.response } });
+    throw error;
+  }
+};
+
+// Reset Password API
+export const resetPassword = (data) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${baseURL}/api/users/reset-password`, data);
+    return res.data;
+  } catch (error) {
+    dispatch({ type: "SET_ALERT", payload: { message: error.response } });
+    throw error;
+  }
+};
