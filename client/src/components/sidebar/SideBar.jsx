@@ -102,6 +102,7 @@ const Siderbar = ({ signout }) => {
                       <span className="link-text">Account</span>
                     </NavLink>
                     </li>
+<<<<<<< HEAD
                     {/* Job Offering */}
                     <li className="side-item">
                     <NavLink
@@ -116,6 +117,9 @@ const Siderbar = ({ signout }) => {
                       <span className="link-text">Job Offering</span>
                     </NavLink>
                     </li>
+=======
+                  
+>>>>>>> main
                   {/* LOGOUT */}
                   <li
                     className="side-item"

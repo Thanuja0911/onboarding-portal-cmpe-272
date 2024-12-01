@@ -37,10 +37,13 @@ app.use('/api/users/', employee)
 import user from "./users/user.route.js"
 app.use('/api/users/', user)
 
+<<<<<<< HEAD
 
 import position from "./position/position.route.js"
 app.use('/api/position', position);
 
+=======
+>>>>>>> main
 // employee route
 // Handle errors.
 app.use(function(err, req, res, next) {

@@ -3,6 +3,10 @@ import api from "../../shared/api"
 //import msal from "@azure/msal-browser";
 import { PublicClientApplication } from "@azure/msal-browser"
 const baseURL = process.env.REACT_APP_BACKEND_URL;
+<<<<<<< HEAD
+=======
+console.log(baseURL);
+>>>>>>> main
 
 export const signup = (data) => async (dispatch) => {
     try {
@@ -86,6 +90,7 @@ export const generateCSV = ()=> async(dispatch)=>{
   }
 }
 
+<<<<<<< HEAD
 export const deletePosition = (data) => async (dispatch) => {
   try {
     const res = await axios.post(`${baseURL}/api/position/deleteposition`, data)
@@ -110,6 +115,8 @@ export const getAllPosition = ()=> async (dispatch)=>{
 }
 
 
+=======
+>>>>>>> main
 export const getAllEmployee = ()=> async (dispatch)=>{
   try{
     const res = await axios.get(`${baseURL}/users/allemployee`)
@@ -142,6 +149,7 @@ export const getSinglePendingEmployee = (id)=> async (dispatch)=>{
   }
 }
 
+<<<<<<< HEAD
 
 export const addPosition = (data)=> async(dispatch)=>{
   try{
@@ -159,6 +167,8 @@ export const addPosition = (data)=> async(dispatch)=>{
 }
 
 
+=======
+>>>>>>> main
 export const addEmployee = (data)=> async(dispatch)=>{
   try{
     const res = await axios.post(`${baseURL}/users/newemployee`,data)
