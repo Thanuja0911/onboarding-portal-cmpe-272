@@ -4,6 +4,7 @@
   gap: 20px; /* Space between the sidebar and the main content */
   padding: 20px;
   align-items: stretch; /* Stretch both sidebar and content to match height */
+  margin-left: 64px;
 }
 
 /* Sidebar styling */
@@ -21,7 +22,10 @@
 /* Profile picture section */
 .profile-section {
   text-align: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .profile-pic {
@@ -53,7 +57,7 @@
 .sidebar-info {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Spacing between sections */
+  /* gap: 20px; Spacing between sections */
 }
 
 .sidebar-info h4 {
@@ -143,6 +147,8 @@ h3 {
 .save-button-container {
   text-align: left; /* Align save button to the left */
   margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .save-button {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./EmployeeLanding.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
+import SideBar from "../../components/sidebar/SideBar";
 
 const EmployeeLanding = () => {
   const [employeeDetails, setEmployeeDetails] = useState({
@@ -58,8 +59,9 @@ const EmployeeLanding = () => {
   };
 
   return (
+    <>
+    <SideBar/>
     <div className="employee-landing-container">
-      {/* Sidebar */}
       <aside className="employee-sidebar">
         <div className="profile-section">
           {employeeDetails.profilePic ? (
@@ -76,6 +78,7 @@ const EmployeeLanding = () => {
             accept="image/*"
             onChange={handleFileChange}
             className="upload-input"
+            style={{ fontSize: "12px", marginLeft: "10px", width: "200px" }}
           />
         </div>
         <div className="contact-section">
@@ -89,7 +92,7 @@ const EmployeeLanding = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group" style={{ marginTop: "10px" }}>
             <label>Phone Number</label>
             <input
               type="tel"
@@ -327,6 +330,7 @@ const EmployeeLanding = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
