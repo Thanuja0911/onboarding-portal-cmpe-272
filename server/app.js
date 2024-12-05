@@ -33,6 +33,10 @@ app.use(express.urlencoded({ extended: true }));
 import employee from "./employee/employee.route.js"
 app.use('/api/users/', employee)
 
+import position from "./position/position.route.js"
+app.use('/api/position', position);
+
+
 // Import user route and create user route middelware
 import user from "./users/user.route.js"
 app.use('/api/users/', user)

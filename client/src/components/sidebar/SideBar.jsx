@@ -102,7 +102,34 @@ const Siderbar = ({ signout }) => {
                       <span className="link-text">Account</span>
                     </NavLink>
                     </li>
-                  
+                    {/* Job Offering */}
+                    <li className="side-item">
+                    <NavLink
+                      to="/offer"
+                      activeClassName="active-side-nav-link"
+                      className="side-link"
+                    >
+                      <KeyOutlined
+                        twoToneColor="#dd5dfd"
+                        style={{ fontSize: "1.5rem" }}
+                      />
+                      <span className="link-text">Job Offering</span>
+                    </NavLink>
+                    </li>
+                                      {/* Chat*/}
+                                      <li className="side-item">
+                      <NavLink
+                        to="/chat"
+                        activeClassName="active-side-nav-link"
+                        className="side-link"
+                      >
+                        <KeyOutlined
+                          twoToneColor="#dd5dfd"
+                          style={{ fontSize: "1.5rem" }}
+                        />
+                        <span className="link-text">Chat</span>
+                      </NavLink>
+                    </li>      
                   {/* LOGOUT */}
                   <li
                     className="side-item"

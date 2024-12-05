@@ -290,6 +290,17 @@ router.post('/register_user/:id', async(req,res)=>{
 
 })
 
+router.get('/all_users', authorize, async(req,res)=>{
+    try{
+        const users = await User.find();
+        console.log(users);
+        res.send(users)
+    }catch(e){
+        res.status(400).send({message: "Failed to get all users"})
+    }
+ })
+
+
 router.get('/employee/:id', authorize, async(req,res)=> {
     try{
         const user = await User.findOne({_id: req.params.id})

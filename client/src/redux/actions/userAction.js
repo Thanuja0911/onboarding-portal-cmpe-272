@@ -78,6 +78,58 @@ export const getEmployee = (id)=> async (dispatch)=>{
   }
 }
 
+
+export const deletePosition = (data) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${baseURL}/api/position/deleteposition`, data)
+    dispatch({
+      type: "SUCCESS_DATA",
+      payload: "Position deleted Successfully",
+    });
+    await dispatch({type:"GET_ALL_POSITION", payload: {all_position: res.data.all_position}})
+  } catch(err) {
+    dispatch({type:"SET_ALERT", payload: {message:"Failed to delete Position"}})
+  }
+}
+
+export const getAllPosition = ()=> async (dispatch)=>{
+  try{
+    const res = await axios.get(`${baseURL}/api/position/allposition`)
+    console.log(res)
+    dispatch({type:"GET_ALL_POSITION", payload: {all_position: res.data.all_position}})
+  }catch(err){
+    dispatch({type:"SET_ALERT", payload: {message:"Failed to get Position"}})
+  }
+}
+
+export const addPosition = (data)=> async(dispatch)=>{
+  try{
+    const res = await axios.post(`${baseURL}/api/position/newposition`,data)
+    console.log(res)
+    await dispatch({
+      type: "SUCCESS_DATA",
+      payload: "Position Added",
+    });
+    window.location.href = "/offer"
+  }catch(err){
+    console.log(err)
+    dispatch({type:"SET_ALERT", payload: {message:err.response}})
+  }
+}
+
+export const getAllUsers = () => async (dispatch)=>{
+  try{
+    const res = await axios.get(`${baseURL}/api/users/all_users`)
+    console.log(res)
+    dispatch({type:"GET_ALL_USERS", payload: {all_users: res.data}})
+    return res.data
+  }catch(err){
+    dispatch({type:"SET_ALERT", payload: {message:"Failed to get all users"}})
+    return null
+  }
+}
+
+
 export const generateCSV = ()=> async(dispatch)=>{
   try{
     const res = await axios.get(`${baseURL}/users/getcsv`)
