@@ -77,7 +77,7 @@ const Siderbar = ({ signout }) => {
                   {/* Employee */}
                   <li className="side-item">
                     <NavLink
-                      to="/employee"
+                      to="/analytics"
                       activeClassName="active-side-nav-link"
                       className="side-link"
                     >
@@ -146,7 +146,7 @@ const Siderbar = ({ signout }) => {
                  {/* Employee */}
                  <li className="side-item">
                     <NavLink
-                      to="/employee"
+                      to="/analytics"
                       activeClassName="active-side-nav-link"
                       className="side-link"
                     >
