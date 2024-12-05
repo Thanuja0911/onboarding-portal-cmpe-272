@@ -20,6 +20,9 @@ import SingleEmployee from "./pages/employee/SingleEmployee"
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import About from "./pages/About/About";
+import EmployeeProfile from "./pages/EmployeeProfile/EmployeeProfile";
+import Documents from "./pages/documents/documents";
+import EmployeeSalary from "./pages/employeeDashboard/EmployeeSalary/EmployeSalary"; 
 
 import api from "./shared/api"; 
 import { connect } from "react-redux";
@@ -104,9 +107,20 @@ const App = (props)=>{
                 </Route>
               </>
               :
-              <Route element={<PrivateRoute/>}>
-                <Route path="/dashboard/:id" element={<UserDashboard/>} exact />             
-                <Route path="/landing/:id" element={<UserLanding/>} exact />             
+              <Route element={<PrivateRoute />}>
+                <Route path="/dashboard/:id" element={<UserDashboard />} exact />
+                <Route path="/landing/:id" element={<UserLanding />} exact />
+                <Route path="/documents/:id" element={<Documents />} exact />
+                <Route
+                  path="/employeesalary"
+                  element={<EmployeeSalary />} // Employee Salary Route
+                  exact
+                />
+                <Route
+                  path="/employeeprofile"
+                  element={<EmployeeProfile />} // Employee Profile Route
+                  exact
+                />
               </Route>
               }
               </>

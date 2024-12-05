@@ -321,6 +321,20 @@ const Siderbar = ({ signout }) => {
                   <span className="link-text">Dashboard</span>
                 </NavLink>
               </li>
+              {/* Documents */}
+              <li className="side-item">
+                <NavLink
+                  to={"/documents/"+id}
+                  activeClassName="active-side-nav-link"
+                  className="side-link"
+                >
+                  <PieChartTwoTone
+                    twoToneColor="#dd5dfd"
+                    style={{ fontSize: "1.5rem" }}
+                  />
+                  <span className="link-text">Documents</span>
+                </NavLink>
+              </li>
               
               {/* LOGOUT */}
               <li

@@ -1,40 +1,26 @@
-.empdash{
-    width: 100%;
-    min-height: 100vh;      
+.empdash {
+    display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .empcontainer {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .action-buttons {
     display: flex;
-}
-
-.empcontainer{
-    background-color: aliceblue;
-    padding: 80px;
-    flex-direction: column;
-}
-
-.doc{
-    display: flex;
-    column-gap: 15px;
-    font-size: 15px;
-    font-weight: bold;
-    align-items: center;
-}
-
-.doc>p{
-   min-width: 100px;
-}
-
-.viewDoc{
-    font-size: 22px;
-    cursor:pointer;
-}
-
-.doc-verified{
-    color:green;
-    font-size: 22px;
-}
-
-.doc-unverified{
-    color:red;
-    font-size: 22px;
-}
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .dashboard-button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
