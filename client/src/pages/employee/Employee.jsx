@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import SideBar from "../../components/sidebar/SideBar"
-import {Table, Tag, Upload, Tabs, message, notification,Button} from "antd";
+import {Table, Tag, Upload, Tabs, message, notification,Button, Progress} from "antd";
 import {Link} from "react-router-dom"
 import { signup, getAllEmployee,addMultipleEmployee, getPendingEmployee } from "../../redux/actions/userAction";
 import { connect } from "react-redux";
@@ -8,209 +8,127 @@ import xlsx from "xlsx"
 import store from "../../redux/store";
 import { UploadOutlined } from '@ant-design/icons';
 import "./Employee.css"
-const {Column} = Table
+// const {Column} = Table
+// import SideBar from "../../components/sidebar/SideBar";
+// import { Table, Progress } from "antd";
 
-const { TabPane } = Tabs;
-const Employee = (props)=>{
-    const [empData, setEmpData] = useState([]);
-    const [pendingEmpData, setPendingEmpData] = useState([])
+const Employee = () => {
+  const data = [
+    {
+      key: "1",
+      name: "Edward Jones",
+      position: "Python Developer",
+      department: "Technical Department",
+      hiringLead: "Sammy Stone",
+      offerDate: "05/07/2019",
+      acceptDate: "05/08/2019",
+      progress: 90,
+      tasks: "9/10",
+    },
+    {
+      key: "2",
+      name: "Kassandra Jenkins",
+      position: "DevOps Engineer",
+      department: "Technical Department",
+      hiringLead: "Sammy Stone",
+      offerDate: "05/08/2019",
+      acceptDate: "05/09/2019",
+      progress: 80,
+      tasks: "8/10",
+    },
+    {
+      key: "3",
+      name: "Laura McClein",
+      position: "Sales Manager",
+      department: "Sales Department",
+      hiringLead: "Sammy Stone",
+      offerDate: "05/10/2019",
+      acceptDate: "05/12/2019",
+      progress: 50,
+      tasks: "5/10",
+    },
+    // Add more rows here as required
+  ];
 
-    
-    useEffect(()=>{
-        console.log("here")
-        if(props.pending_employee===null){
-            props.getPendingEmployee()
-        console.log("hereii")
-        }else{
-            console.log(props.pending_employee)
-            setPendingEmpData(props.pending_employee.documents)
-        }
-    },[props.pending_employee])
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Position",
+      dataIndex: "position",
+      key: "position",
+    },
+    {
+      title: "Department",
+      dataIndex: "department",
+      key: "department",
+    },
+    {
+      title: "Hiring Lead",
+      dataIndex: "hiringLead",
+      key: "hiringLead",
+    },
+    {
+      title: "Offer Date",
+      dataIndex: "offerDate",
+      key: "offerDate",
+    },
+    {
+      title: "Accept Date",
+      dataIndex: "acceptDate",
+      key: "acceptDate",
+    },
+    {
+      title: "Onboarding Progress",
+      dataIndex: "progress",
+      key: "progress",
+      render: (progress) => <Progress percent={progress} />,
+    },
+    {
+      title: "Tasks",
+      dataIndex: "tasks",
+      key: "tasks",
+    },
+  ];
 
-    useEffect(()=>{
-        if(props.all_employee===null){
-            props.getAllEmployee()
-        }else{
-            console.log(props.all_employee)
-            setEmpData(props.all_employee.documents)
-        }
-    },[props.all_employee])
-
-   
-    const close = () => {
-        store.dispatch({ type: "SET_ALERT", payload: { message: null } });
-      };
-    
-      
-    const openNotification = (err) => {
-      notification["error"]({
-        message: "Error in employee",
-        // description: err.message,
-        onClose: close,
-      });
-    };
-  
-    useEffect(() => {
-      if (props.alert_message !== null && props.alert_message!= undefined) {
-        openNotification(props.alert_message.data);
-       console.log(props.alert_message.data)
-      }
-    }, [props.alert_message]);
-  
-    
-    const readUploadFile =  (e) => {
-        e.preventDefault();
-        console.log("called")
-       
-        console.log(e.target.files)
-        if (e.target.files) {
-            const reader = new FileReader();
-            reader.onload = async (e) => {
-                const data = e.target.result;
-                const workbook = xlsx.read(data, { type: "array" });
-                const sheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[sheetName];
-                const json = xlsx.utils.sheet_to_json(worksheet);
-                console.log(json);
-                //return json;
-                try{
-                let eres = await props.addMultipleEmployee(json)
-                }catch(err){
-                    console.log(err)
-                }
-            };
-            reader.readAsArrayBuffer(e.target.files[0]);
-            e.target.value = ''
-        }
-        
-        return null;
-    }
-
-
-    return(
-        <>
-        <SideBar/>
-        <div className="all-employee-container">
-            <div style={{height:"50px"}}>
-            <Link to="/new-employee">
-            <Button type="primary" className="employee-add">
-                Add Employee
-            </Button>
-            </Link>
-            <div>
-            <label onChange={readUploadFile} htmlFor="formId">
-                <input
-                        type="file"
-                        accept=".xlsx, .xls, .csv" 
-                        id="formId" 
-                        name=""
-                        hidden 
-                    />
-                    <p  className="employee-upload"><UploadOutlined/> Upload file</p>
-            </label>
-            </div>
-            </div>
-            <Tabs defaultActiveKey="1" style={{width:"100%"}} className="employee-tab">
-                <TabPane tab="Employee" key="1">
-                <Table
-                    dataSource={empData}
-                    className="employee-table"
-                >
-                    <Column
-                        title="Name"
-                        dataIndex="name"
-                        key="name"
-                    />
-                    <Column
-                        title="Email"
-                        dataIndex="email"
-                        key="email"
-                    />
-                    <Column
-                        title="Role"
-                        dataIndex="career"
-                        key="career"
-                    />
-                    <Column
-                        title="Status"
-                        dataIndex="status"
-                        key="status"
-                    />
-                    <Column
-                        title=""
-                        dataIndex="_id"
-                        key="_id"
-                        render = {(_id)=>(
-                            <Link to={"/employee/"+_id}>
-                                View
-                            </Link>
-                        )}
-                    />
-                </Table>
-                </TabPane>
-                <TabPane tab="Pending" key="2">
-                <Table
-                    dataSource={pendingEmpData}
-                    className="employee-table"
-                >
-                    <Column
-                        title="Name"
-                        dataIndex="name"
-                        key="name"
-                    />
-                    <Column
-                        title="Email"
-                        dataIndex="email"
-                        key="email"
-                    />
-                    <Column
-                        title="Role"
-                        dataIndex="career"
-                        key="career"
-                    />
-                    <Column
-                        title="Status"
-                        dataIndex="status"
-                        key="status"
-                    />
-                     <Column
-                        title="Error"
-                        dataIndex="error_msg"
-                        key="error_msg"
-                    />
-                    <Column
-                        title=""
-                        dataIndex="_id"
-                        key="_id"
-                        render = {(_id)=>(
-                            <Link to={"/pending-employee/"+_id}>
-                                Edit
-                            </Link>
-                        )}
-                    />
-                </Table>
-                </TabPane>
-            </Tabs>
+  return (
+    <div className="dashboard-analytics">
+      <SideBar />
+      <div className="analytics-content">
+        <h1>Analytics</h1>
+        <div className="analytics-cards">
+          <div className="analytics-card">
+            <h2>55</h2>
+            <p>Offers to Send</p>
+          </div>
+          <div className="analytics-card">
+            <h2>1</h2>
+            <p>Time to Accept (days)</p>
+          </div>
+          <div className="analytics-card">
+            <h2>12</h2>
+            <p>Time to Onboard (days)</p>
+          </div>
+          <div className="analytics-card">
+            <h2>5</h2>
+            <p>Onboarded</p>
+          </div>
+          <div className="analytics-card">
+            <h2>65%</h2>
+            <p>Offer Acceptance Ratio</p>
+          </div>
+          <div className="analytics-card">
+            <h2>11265</h2>
+            <p>Applications Received</p>
+          </div>
         </div>
-        <div>
-        </div>
-        </>
-    )
-}
+        <Table columns={columns} dataSource={data} />
+      </div>
+    </div>
+  );
+};
 
-const mapActionWithProps = {
-    signup,
-    getAllEmployee,
-    addMultipleEmployee,
-    getPendingEmployee,
-  };
-  
-  const mapPropsWithState = (state) => ({
-    alert_message: state.user.alert_message,
-    success_message: state.user.success_message,
-    all_employee: state.user.all_employee,
-    pending_employee: state.user.pending_employee,
-  });
-  
-  export default connect(mapPropsWithState, mapActionWithProps)(Employee);
-  
+export default Employee;

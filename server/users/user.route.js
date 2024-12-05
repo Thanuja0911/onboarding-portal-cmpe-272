@@ -9,6 +9,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { config } from "dotenv";
 import sgMail from '@sendgrid/mail'
+import { OAuth2Client } from "google-auth-library";
 config()
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -45,6 +46,10 @@ const verificationEmailHtml = (verificationCode) => {
 const generateRandomCode = () => {
     return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
 };
+
+// const { OAuth2Client } = require("google-auth-library");
+// const User = require("../models/User"); // Assuming a Mongoose model is used
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     
 router.post('/register', async (req, res) => {
     //res.send('Register')
@@ -121,6 +126,35 @@ router.post('/register', async (req, res) => {
     return res.status(200).send(user_d)
 
 })
+
+router.post("/google-login", async (req, res) => {
+  const { googleToken, role } = req.body;
+
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: googleToken,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const { name, email } = ticket.getPayload();
+
+    // Check if the user already exists
+    let user = await User.findOne({ email });
+    if (!user) {
+      // Create a new user if not existing
+      user = new User({ name, email, role, password: "" });
+      await user.save();
+    }
+
+    // Generate JWT token
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+    res.status(200).send({ userId: user._id, role: user.role, token });
+  } catch (err) {
+    res.status(400).send({ message: "Google token validation failed", error: err.message });
+  }
+});
+
 
  router.get('/verify_token', authorize, async(req,res)=>{
     console.log(req.user)

@@ -14,19 +14,20 @@ import {
   CircularProgress,
   Grid,
 } from "@mui/material";
+import { GoogleLogin } from "react-google-login";
 import Logo from "../../assets/img/logo.png";
-import { signup } from "../../redux/actions/userAction";
 import SignUpImage from "../../assets/img/signupImage.jpg";
+import { signup } from "../../redux/actions/userAction";
 import { connect } from "react-redux";
 import store from "../../redux/store";
 import "./SignUp.css";
+import GoogleSignInButton from "./GoogleSignInButton";
 
 const SignUp = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [phone, setPhone] = useState("");
   const [role, setRole] = useState("admin");
   const [loading, setLoading] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -46,18 +47,65 @@ const SignUp = (props) => {
         name,
         role,
         email,
-        password
+        password,
       };
-      let chck = await props.signup(data);
-      console.log(chck);
+      let response = await props.signup(data);
+      console.log(response);
     } catch (e) {
-      console.log(e);
+      console.error(e);
+    }
+    setLoading(false);
+  };
+
+  // const handleGoogleLoginSuccess = async (response) => {
+  //   setLoading(true);
+  //   try {
+  //     const { profileObj, tokenId } = response;
+  //     const data = {
+  //       name: profileObj.name,
+  //       email: profileObj.email,
+  //       role,
+  //       googleToken: tokenId,
+  //     };
+  //     let result = await props.signup(data);
+  //     console.log(result);
+  //   } catch (e) {
+  //     console.error("Google login failed:", e);
+  //   }
+  //   setLoading(false);
+  // };
+
+  const handleGoogleLoginFailure = (error) => {
+    console.error("Google login error:", error);
+  };
+
+  const handleGoogleLoginSuccess = async (response) => {
+    setLoading(true);
+    try {
+      const { tokenId } = response;
+      const data = { googleToken: tokenId };
+      const res = await fetch("/api/google-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (res.status === 200) {
+        console.log("Login successful", result);
+        // Handle successful login, e.g., save token, redirect, etc.
+      } else {
+        console.error("Login failed:", result.message);
+      }
+    } catch (err) {
+      console.error("Google login error:", err);
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    if (props.alert_message !== null && props.alert_message !== undefined) {
+    if (props.alert_message) {
       alert("Error in signup: " + props.alert_message.data.message);
       store.dispatch({ type: "SET_ALERT", payload: { message: null } });
     }
@@ -68,7 +116,7 @@ const SignUp = (props) => {
       {/* Left Section */}
       <Grid item xs={6} className="left-section">
         <Box className="branding">
-          <img alt="logo" src={Logo} style={{ marginBottom: "1rem", width: "100px" }}/>
+          <img alt="logo" src={Logo} style={{ marginBottom: "1rem", width: "150px" }} />
           <Typography variant="h4" className="tagline">
             Welcome to Your Journey!
           </Typography>
@@ -103,14 +151,6 @@ const SignUp = (props) => {
             value={email}
             style={{ marginTop: "0px" }}
           />
-          {/* <TextField
-            label="Phone Number"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            onChange={(e) => setPhone(e.target.value)}
-            value={phone}
-          /> */}
           <TextField
             label="Password"
             type="password"
@@ -146,7 +186,6 @@ const SignUp = (props) => {
               />
             }
             label="I agree to the Terms & Conditions"
-            // style={{ marginTop: "10px" }}
           />
           <Button
             variant="contained"
@@ -157,9 +196,21 @@ const SignUp = (props) => {
           >
             {loading ? <CircularProgress size={24} color="inherit" /> : "Create an Account"}
           </Button>
-          <Typography variant="body2" className="signin-link" style={{ marginTop: "10px", fontWeight: 600 }}>
+          <Typography
+            variant="body2"
+            className="signin-link"
+            style={{ marginTop: "10px", fontWeight: 600 }}
+          >
             Already a user? <Link to="/signin">Sign in here</Link>.
           </Typography>
+          <Typography variant="body2" className="or-divider" style={{ marginTop: "15px", display: "flex", justifyContent: "space-evenly" }}>
+            OR
+          </Typography>
+          <GoogleSignInButton
+            onSuccess={handleGoogleLoginSuccess}
+            onFailure={handleGoogleLoginFailure}
+            clientId="752044554768-n169aibds88s15hp40eb619pc4h145fc.apps.googleusercontent.com"
+          />
         </Box>
       </Grid>
     </Grid>

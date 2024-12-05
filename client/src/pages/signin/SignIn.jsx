@@ -15,6 +15,7 @@ import Logo from "../../assets/img/logo.png";
 import SignUpImage from "../../assets/img/signupImage.jpg";
 import "../signup/SignUp.css";
 import "./SignIn.css"; // CSS file for Forgot Password styles
+import GoogleSignInButton from "../signup/GoogleSignInButton";
 
 const SignIn = (props) => {
   const [email, setEmail] = useState("");
@@ -50,6 +51,35 @@ const SignIn = (props) => {
       description: data.message,
       onClose: close,
     });
+  };
+
+  const handleGoogleLoginFailure = (error) => {
+    console.error("Google login error:", error);
+  };
+
+  const handleGoogleLoginSuccess = async (response) => {
+    setLoading(true);
+    try {
+      const { tokenId } = response;
+      const data = { googleToken: tokenId };
+      const res = await fetch("/api/google-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (res.status === 200) {
+        console.log("Login successful", result);
+        // Handle successful login, e.g., save token, redirect, etc.
+      } else {
+        console.error("Login failed:", result.message);
+      }
+    } catch (err) {
+      console.error("Google login error:", err);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -174,6 +204,14 @@ const SignIn = (props) => {
               >
                 New User? SignUp!
               </Link>
+              <Typography variant="body2" className="or-divider" style={{ marginTop: "15px", display: "flex", justifyContent: "space-evenly" }}>
+                OR
+              </Typography>
+              <GoogleSignInButton
+                onSuccess={handleGoogleLoginSuccess}
+                onFailure={handleGoogleLoginFailure}
+                clientId="752044554768-n169aibds88s15hp40eb619pc4h145fc.apps.googleusercontent.com"
+          />
             </>
           ) : (
             <>

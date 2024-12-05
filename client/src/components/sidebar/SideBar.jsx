@@ -53,7 +53,7 @@ const Siderbar = ({ signout }) => {
                 <ul className="sidebar-nav">
                   <li className="logo">
                     <div className="logo-side-link">
-                      <span className="logo-link-text logo-text">Remoto</span>
+                      <span className="logo-link-text logo-text">ONE STEP</span>
                       <RightCircleTwoTone
                         twoToneColor="#dd5dfd"
                         style={{ fontSize: "1.75rem" }}
@@ -71,7 +71,7 @@ const Siderbar = ({ signout }) => {
                         twoToneColor="#dd5dfd"
                         style={{ fontSize: "1.5rem" }}
                       />
-                      <span className="link-text">Dashboard</span>
+                      <span className="link-text">Employees</span>
                     </NavLink>
                   </li>
                   {/* Employee */}
@@ -85,7 +85,7 @@ const Siderbar = ({ signout }) => {
                         twoToneColor="#dd5dfd"
                         style={{ fontSize: "1.5rem" }}
                       />
-                      <span className="link-text">Employee</span>
+                      <span className="link-text">Analytics</span>
                     </NavLink>
                   </li>
                    {/* Account */}
@@ -122,7 +122,7 @@ const Siderbar = ({ signout }) => {
               <ul className="sidebar-nav">
                 <li className="logo">
                   <div className="logo-side-link">
-                    <span className="logo-link-text logo-text">Remoto</span>
+                    <span className="logo-link-text logo-text">ONE STEP</span>
                     <RightCircleTwoTone
                       twoToneColor="#dd5dfd"
                       style={{ fontSize: "1.75rem" }}
@@ -196,7 +196,7 @@ const Siderbar = ({ signout }) => {
             <ul className="sidebar-nav">
               <li className="logo">
                 <div className="logo-side-link">
-                  <span className="logo-link-text logo-text">Remoto</span>
+                  <span className="logo-link-text logo-text">ONE STEP</span>
                   <RightCircleTwoTone
                     twoToneColor="#dd5dfd"
                     style={{ fontSize: "1.75rem" }}
@@ -241,7 +241,7 @@ const Siderbar = ({ signout }) => {
            <ul className="sidebar-nav">
              <li className="logo">
                <div className="logo-side-link">
-                 <span className="logo-link-text logo-text">Remoto</span>
+                 <span className="logo-link-text logo-text">ONE STEP</span>
                  <RightCircleTwoTone
                    twoToneColor="#dd5dfd"
                    style={{ fontSize: "1.75rem" }}
@@ -285,7 +285,7 @@ const Siderbar = ({ signout }) => {
             <ul className="sidebar-nav">
               <li className="logo">
                 <div className="logo-side-link">
-                  <span className="logo-link-text logo-text">Remoto</span>
+                  <span className="logo-link-text logo-text">ONE STEP</span>
                   <RightCircleTwoTone
                     twoToneColor="#dd5dfd"
                     style={{ fontSize: "1.75rem" }}
@@ -341,7 +341,7 @@ const Siderbar = ({ signout }) => {
           <ul className="sidebar-nav">
             <li className="logo">
               <div className="logo-side-link">
-                <span className="logo-link-text logo-text">Remoto</span>
+                <span className="logo-link-text logo-text">ONE STEP</span>
                 <RightCircleTwoTone
                   twoToneColor="#dd5dfd"
                   style={{ fontSize: "1.75rem" }}
