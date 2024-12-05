@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../components/navbar/Navbar";
-import LandingImage from "../../assets/img/bg1.jpg";
+// import LandingImage from "../../assets/img/bg1.jpg";
 import "./Landing.css";
 import { Link } from "react-router-dom";
 
