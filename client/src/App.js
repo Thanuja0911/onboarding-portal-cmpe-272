@@ -25,6 +25,9 @@ import api from "./shared/api";
 import { connect } from "react-redux";
 import store from "./redux/store";
 import { Alert, Spin } from "antd";
+import Offer from './pages/job/Job';
+import NewJob from './pages/job/NewJob';
+import Chat from './pages/chat/Chat.jsx';
 
 const App = (props)=>{
   const [role, setRole] = useState("admin")
@@ -83,6 +86,12 @@ const App = (props)=>{
             <Route path="/dashboard" element={<Dashboard/>} exact />  
             <Route path="/analytics" element={<Employee/>} exact />  
             <Route path="/account" element={<Account/>} exact />  
+            <Route path="/offer" element={<Offer/>} exact />  
+            <Route path="/new-job" element={<NewJob/>} exact/>
+            <Route path="/chat" element={<Chat/>} exact/>
+            <Route path="/employee/:id" element={<SingleEmployee/>} exact />  
+            <Route path="/pending-employee/:id" element={<EditEmployee/>} exact />  
+            <Route path="/new-employee" element={<NewEmployee/>} exact/>
             <Route path="/employee/:id" element={<SingleEmployee/>} exact />  
             <Route path="/pending-employee/:id" element={<EditEmployee/>} exact />  
             <Route path="/new-employee" element={<NewEmployee/>} exact/>
