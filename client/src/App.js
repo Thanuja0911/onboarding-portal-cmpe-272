@@ -81,7 +81,7 @@ const App = (props)=>{
           {role === "admin"? 
           <Route element={<PrivateRoute/>}>
             <Route path="/dashboard" element={<Dashboard/>} exact />  
-            <Route path="/employee" element={<Employee/>} exact />  
+            <Route path="/analytics" element={<Employee/>} exact />  
             <Route path="/account" element={<Account/>} exact />  
             <Route path="/employee/:id" element={<SingleEmployee/>} exact />  
             <Route path="/pending-employee/:id" element={<EditEmployee/>} exact />  
