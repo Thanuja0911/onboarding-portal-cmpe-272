@@ -1,18 +1,23 @@
-import React, {useEffect} from "react";
-import { Link, NavLink } from "react-router-dom";
+import React from "react";
 import Navbar from "../../components/navbar/Navbar";
-import LandingImage from "../../assets/img/landing.svg";
-import "./Landing.css"
+import LandingImage from "../../assets/img/bg1.jpg";
+import "./Landing.css";
+import { Link } from "react-router-dom";
 
-const Landing = ()=>{
-    return(
-        <div>
-            <Navbar/>
-            <div  className="LandingContainer">
-                <img src={LandingImage} alt="landing" className="landingImage"/>
-                <p className="landingPara">Verify documents, Setup desk, & introduce company culture and team everything in one platform.</p>
-            </div>
-        </div>
-    )
-}
+const Landing = () => {
+  return (
+    <div className="LandingContainer">
+      <Navbar />
+      <div className="heroSection">
+        {/* <h1></h1> */}
+        <h1>Welcome Onboard</h1>
+        <p>
+          Let's make this onboarding process quick and effortless. Complete your uploads, finish the documentation, and get back to what matters most — your exciting journey ahead!
+        </p>
+        <button className="cta-button" ><Link to="/signin">Get Started</Link></button>
+      </div>
+    </div>
+  );
+};
+
 export default Landing;

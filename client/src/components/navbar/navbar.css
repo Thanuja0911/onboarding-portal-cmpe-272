@@ -1,100 +1,47 @@
-.NavContainer{
+/* Navbar */
+.Navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
   display: flex;
-  background-color: #0C00E3;
-  height: 10vh;
   justify-content: space-between;
-  color: #F1B7FF;
-}
-.Navbar{
-  height: 10vh;
-}
-.remoto-logo{
-  height: 10vh;
-}
-.right{
-  padding-right: 10vw;
-  font-size: 20px;
-}
-.nav{
-  padding: 0;
-  list-style: none;
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
   align-items: center;
+  z-index: 3;
 }
 
-.nav-link{
-  color: inherit;
+.nav-left .logo {
+  height: 50px;
+}
+
+.nav-right .nav-link {
+  margin-left: 20px;
+  color: #fff;
   text-decoration: none;
-  font-weight: 600;
-  padding: 15px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
-.NavMenu{
-  display:none;
+.nav-right .nav-link:hover {
+  color: #00aaff;
 }
 
-
-@media (max-width: 650px) {
-  
-  .NavContainer {
-    flex-direction: column;
-    transition: var(--globalTransition);
-    width: 100vw;
-    margin: 0;
-    z-index: 1000;
-  }
-  .NavContainer.active {
-    height: 100vh;
-  }
-  .NavContainer.active .left {
-    margin-top: 5px;
-    height: 4.5rem;
-  }
-  .left {
-    float: right;
-    height: 5vh;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heroSection {
+    max-width: 90%;
   }
 
-  .Navbar{
-    display: flex;
-    width: 100vw;
+  .heroSection h1 {
+    font-size: 3rem;
   }
-  .NavMenu {
-    display: block;
-    float: right;
-    background-color: #0C00E3;
-    color: #F1B7FF;
+
+  .heroSection h2 {
+    font-size: 1.5rem;
   }
-  .menuBar{
-    position: "absolute";
-    padding-top: 12px;
-    padding-right: 15px;
-    font-size: 22px;
-    z-index: 10;
-    float: right;
-  }
-  .right{
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--globalTransition) 2s;
-  }
-  
-  .right.active {
-    opacity: 1;
-    visibility: visible;
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    font-size: 18px;
-    justify-content: center;
-  }
-  .right.active ul {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin: 0;
+
+  .cta-button {
+    padding: 12px 20px;
   }
 }

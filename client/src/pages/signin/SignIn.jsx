@@ -99,7 +99,7 @@ const SignIn = (props) => {
       <Grid item xs={6} className="left-section">
         <div className="branding">
           <Link to="/">
-            <img alt="logo" src={Logo} className="logo" />
+            <img alt="logo" src={Logo} className="logo" style={{ width: "150px" }}/>
           </Link>
           <Typography variant="h4" className="tagline">
             Welcome Back!
@@ -166,6 +166,14 @@ const SignIn = (props) => {
               >
                 Forgot password? Click here to reset.
               </Typography>
+              <Link
+                variant="body2"
+                className="forgot-password-link"
+                to="/signup"
+                style={{ marginTop: "10px", cursor: "pointer" }}
+              >
+                New User? SignUp!
+              </Link>
             </>
           ) : (
             <>

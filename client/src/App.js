@@ -19,6 +19,7 @@ import Letter from "./pages/letter/Letter"
 import SingleEmployee from "./pages/employee/SingleEmployee"
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
+import About from "./pages/About/About";
 
 import api from "./shared/api"; 
 import { connect } from "react-redux";
@@ -72,6 +73,7 @@ const App = (props)=>{
         */}
           <Route element={<PublicRoute/>}>
             <Route path="/" element={<Landing/>} exact />  
+            <Route path="/about" element={<About/>} exact />
             <Route path="/signup" element={<SignUp/>} exact />
             <Route path="/signin" element={<SignIn/>} exact />
             <Route path="/letter/:id" element={<Letter/>} exact />
