@@ -3,6 +3,10 @@ const initialState = {
     alert_message: null,
     success_message: null,
     all_employee: null,
+<<<<<<< HEAD
+    all_position: null,
+=======
+>>>>>>> main
     pending_employee: null,
     employee: null,
     newjoinee: null,
@@ -22,6 +26,11 @@ const userReducer = (state=initialState, action) => {
         return { ...state, success_message: action.payload };
         case "GET_ALL_EMPLOYEE":
         return {...state, all_employee: action.payload.all_employee}
+<<<<<<< HEAD
+        case "GET_ALL_POSITION":
+        return {...state, all_position: action.payload.all_position}
+=======
+>>>>>>> main
         case "GET_EMPLOYEE":
         return {...state, employee: action.payload.employee}
         case "GET_PENDING_EMPLOYEE":

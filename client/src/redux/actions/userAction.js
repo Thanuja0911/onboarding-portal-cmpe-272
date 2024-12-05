@@ -3,7 +3,10 @@ import api from "../../shared/api"
 //import msal from "@azure/msal-browser";
 import { PublicClientApplication } from "@azure/msal-browser"
 const baseURL = process.env.REACT_APP_BACKEND_URL;
+<<<<<<< HEAD
+=======
 console.log(baseURL);
+>>>>>>> main
 
 export const signup = (data) => async (dispatch) => {
     try {
@@ -87,6 +90,33 @@ export const generateCSV = ()=> async(dispatch)=>{
   }
 }
 
+<<<<<<< HEAD
+export const deletePosition = (data) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${baseURL}/api/position/deleteposition`, data)
+    dispatch({
+      type: "SUCCESS_DATA",
+      payload: "Position deleted Successfully",
+    });
+    await dispatch({type:"GET_ALL_POSITION", payload: {all_position: res.data.all_position}})
+  } catch(err) {
+    dispatch({type:"SET_ALERT", payload: {message:"Failed to delete Position"}})
+  }
+}
+
+export const getAllPosition = ()=> async (dispatch)=>{
+  try{
+    const res = await axios.get(`${baseURL}/api/position/allposition`)
+    console.log(res)
+    dispatch({type:"GET_ALL_POSITION", payload: {all_position: res.data.all_position}})
+  }catch(err){
+    dispatch({type:"SET_ALERT", payload: {message:"Failed to get Position"}})
+  }
+}
+
+
+=======
+>>>>>>> main
 export const getAllEmployee = ()=> async (dispatch)=>{
   try{
     const res = await axios.get(`${baseURL}/users/allemployee`)
@@ -119,6 +149,26 @@ export const getSinglePendingEmployee = (id)=> async (dispatch)=>{
   }
 }
 
+<<<<<<< HEAD
+
+export const addPosition = (data)=> async(dispatch)=>{
+  try{
+    const res = await axios.post(`${baseURL}/api/position/newposition`,data)
+    console.log(res)
+    await dispatch({
+      type: "SUCCESS_DATA",
+      payload: "Position Added",
+    });
+    window.location.href = "/offer"
+  }catch(err){
+    console.log(err)
+    dispatch({type:"SET_ALERT", payload: {message:err.response}})
+  }
+}
+
+
+=======
+>>>>>>> main
 export const addEmployee = (data)=> async(dispatch)=>{
   try{
     const res = await axios.post(`${baseURL}/users/newemployee`,data)

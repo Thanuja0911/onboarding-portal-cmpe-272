@@ -109,7 +109,11 @@ const Employee = (props)=>{
                     <p  className="employee-upload"><UploadOutlined/> Upload file</p>
             </label>
             </div>
+<<<<<<< HEAD
+        </div>
+=======
             </div>
+>>>>>>> main
             <Tabs defaultActiveKey="1" style={{width:"100%"}} className="employee-tab">
                 <TabPane tab="Employee" key="1">
                 <Table
