@@ -1,0 +1,64 @@
+.doc-bg{
+  background-color: rgb(182, 216, 226);
+}
+.document-container {
+  max-width: 800px;
+  height: 500px;
+  margin: 100px auto;
+  padding: 50px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgb(182, 216, 226);
+  
+}
+
+h2 {
+  text-align: center;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.upload-section input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.upload-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}
+
+.uploaded-files h3 {
+  margin-top: 20px;
+}
+
+.uploaded-files ul {
+  list-style: none;
+  padding: 0;
+}
+
+.uploaded-files li {
+  margin-bottom: 10px;
+}
+
+.uploaded-files a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.uploaded-files a:hover {
+  text-decoration: underline;
+}
