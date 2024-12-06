@@ -412,6 +412,15 @@ router.put('/update',authorize, async (req, res)=>{
     }
 })
 
+router.get('/all_users', authorize, async(req,res)=>{
+    try{
+        const users = await User.find();
+        console.log(users);
+        res.send(users)
+    }catch(e){
+        res.status(400).send({message: "Failed to get all users"})
+    }
+ })
 
 export default router
 
