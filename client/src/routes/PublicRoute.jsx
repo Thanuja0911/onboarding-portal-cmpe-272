@@ -13,7 +13,7 @@ const PublicRoute = ()=> {
           const role = localStorage.getItem("role")
           if (token) {
             if(role=="employee"){
-              navigate(`/dashboard/${id}`)
+              navigate(`/landing/${id}`)
             } else{
               navigate("/dashboard");
             }

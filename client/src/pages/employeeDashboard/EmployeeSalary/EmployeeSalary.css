@@ -1,6 +1,6 @@
 .salary-container {
     font-family: Arial, sans-serif;
-    padding-left: 150px;
+    margin-left: 80px;
     background-color: #f9f9f9;
     flex :1;
     transition: margin-left 0.3s ease;
@@ -10,12 +10,14 @@
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+    margin-top: 20px;
   }
   
   .salary-overview {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    margin-top: 20px;
   }
   
   .salary-report,
@@ -118,9 +120,9 @@
 
   .paycard{
     display: flex;
-   flex-direction: column;
+   flex-direction: row;
     align-items: center;
-    align-content: space-between;
+    justify-content: center;
   }
 
   

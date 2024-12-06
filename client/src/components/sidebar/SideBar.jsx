@@ -310,7 +310,7 @@ const Siderbar = ({ signout }) => {
               {/* DASHBOARD */}
               <li className="side-item">
                 <NavLink
-                  to={"/dashboard/"+id}
+                  to={"/salary/"+id}
                   activeClassName="active-side-nav-link"
                   className="side-link"
                 >
@@ -318,7 +318,7 @@ const Siderbar = ({ signout }) => {
                     twoToneColor="#dd5dfd"
                     style={{ fontSize: "1.5rem" }}
                   />
-                  <span className="link-text">Dashboard</span>
+                  <span className="link-text">Salary</span>
                 </NavLink>
               </li>
               {/* Documents */}

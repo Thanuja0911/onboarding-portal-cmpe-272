@@ -108,14 +108,14 @@ const App = (props)=>{
               </>
               :
               <Route element={<PrivateRoute />}>
-                <Route path="/dashboard/:id" element={<UserDashboard />} exact />
+                <Route path="/salary/:id" element={<EmployeeSalary />} exact />
                 <Route path="/landing/:id" element={<UserLanding />} exact />
                 <Route path="/documents/:id" element={<Documents />} exact />
-                <Route
+                {/* <Route
                   path="/employeesalary"
                   element={<EmployeeSalary />} // Employee Salary Route
                   exact
-                />
+                /> */}
                 <Route
                   path="/employeeprofile"
                   element={<EmployeeProfile />} // Employee Profile Route

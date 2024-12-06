@@ -3,7 +3,7 @@
     display: flex;
     gap: 20px; /* Space between the sidebar and the main content */
     padding: 20px;
-    padding-left: 100px;
+    /* padding-left: 100px; */
     align-items: stretch; /* Stretch both sidebar and content to match height */
   }
   
@@ -22,7 +22,7 @@
   /* Profile picture section */
   .profile-section {
     text-align: center;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   
   .profile-pic {
@@ -54,7 +54,7 @@
   .sidebar-info {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Spacing between sections */
+    /* gap: 20px; */
   }
   
   .sidebar-info h4 {

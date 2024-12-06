@@ -15,7 +15,7 @@ const EmployeeSalary = () => {
     <div>
     <SideBar />
     <div className="salary-container">
-      <h1 className="title">Salary Details</h1>
+      {/* <h1 className="title">Salary Details</h1> */}
 
       {/* Salary Overview */}
       <div className="salary-overview">
@@ -23,7 +23,7 @@ const EmployeeSalary = () => {
           <h2>Salary Report</h2>
           <p>For September 01 - September 15</p>
           <h3 className="salary-amount">$6,250.00</h3>
-          <p>Ken Jones</p>
+          <p>Naga Lakshmi</p>
           <div className="months">
             {["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"].map((month) => (
               <button key={month} className="month-btn">
@@ -51,7 +51,7 @@ const EmployeeSalary = () => {
               cx="50%"
               cy="50%"
               outerRadius={100}
-              label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+              label={({ name }) => `${name}`}
             >
               {payrollData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
