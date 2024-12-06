@@ -59,13 +59,7 @@ const Offer = (props)=>{
         <>
         <SideBar/>
         <div className="all-employee-container">
-            <div style={{height:"50px"}}>
-                <Link to="/new-job">
-                <Button type="primary" className="employee-add">
-                    Add New Position
-                </Button>
-                </Link>
-            </div>
+
             <Tabs defaultActiveKey="1" style={{width:"100%"}} className="employee-tab">
                 <TabPane tab="Job Offering" key="1">
                 <Table
@@ -114,6 +108,13 @@ const Offer = (props)=>{
                 </Table>
                 </TabPane>
             </Tabs>
+            <div style={{height:"50px"}}>
+                <Link to="/new-job">
+                <Button type="primary" className="employee-add">
+                    Add New Position
+                </Button>
+                </Link>
+            </div>
         </div>
         </>
     )
