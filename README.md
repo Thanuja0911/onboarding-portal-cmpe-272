@@ -84,6 +84,7 @@ cd employee-onboarding-portal
 ## Architechture
 <img width="714" alt="Screenshot 2024-12-05 at 5 52 27 PM" src="https://github.com/user-attachments/assets/3a97a7b3-e087-45b7-816d-64419ca37d06">
 
+---
 ## Required Feature Implementation
 
 ### **Single Sign-on (SSO) / AD Authentication with SSL/TLS Encryption**  
@@ -142,4 +143,10 @@ cd employee-onboarding-portal
 
 This comprehensive set of features enhances both the user experience and the security of the platform, making it a robust and scalable solution for employee onboarding.
 
+---
+## Test Cases & Results
+
+Added authaction.test.js file for functional testing. 
+Test case success -
+<img width="662" alt="Screenshot 2024-12-08 at 7 40 34 PM" src="https://github.com/user-attachments/assets/d6334866-da2a-4994-8865-2faed318aad3">
 
