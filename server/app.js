@@ -8,6 +8,7 @@ import fs from 'fs';
 import util from 'util';
 import { uploadFile, getFileStream} from './s3upload/s3.js';
 import multer from 'multer';
+
 //const { uploadFile, getFileStream } = require('./server/s3upload/s3')
 
 const unlinkFile = util.promisify(fs.unlink)
@@ -38,6 +39,10 @@ app.use('/api/users/', employee)
 // Import user route and create user route middelware
 import user from "./users/user.route.js"
 app.use('/api/users/', user)
+
+
+import position from "./position/position.route.js"
+app.use('/api/position/', position)
 
 // employee route
 // Handle errors.

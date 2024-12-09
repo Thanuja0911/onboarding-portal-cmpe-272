@@ -9,7 +9,9 @@ const initialState = {
     single_pending_employee:null,
     employee_info: null,
     it_employee:null,
+    all_position: null,
     trained_employee:null,
+    all_users: null,
 }
 
 const userReducer = (state=initialState, action) => {
@@ -22,8 +24,12 @@ const userReducer = (state=initialState, action) => {
         return { ...state, success_message: action.payload };
         case "GET_ALL_EMPLOYEE":
         return {...state, all_employee: action.payload.all_employee}
+        case "GET_ALL_POSITION":
+        return {...state, all_position: action.payload.all_position}
         case "GET_EMPLOYEE":
         return {...state, employee: action.payload.employee}
+        case "GET_ALL_USERS":
+        return {...state, all_users: action.payload.all_users}
         case "GET_PENDING_EMPLOYEE":
         return {...state, pending_employee: action.payload.pending_employee}
         case "GET_NEWJOINEE":

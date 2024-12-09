@@ -1,68 +1,111 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./document.css";
 import SideBar from "../../components/sidebar/SideBar";
+import { notification } from "antd";
 
 const Document = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadedFiles, setUploadedFiles] = useState([]);
-
-  const API_URL = "http://localhost:3000/api/documents";
+  const [fileOptions, setFileOptions] = useState([
+    "Employee Contract",
+    "Offer Letter",
+    "Employee Handbook",
+    "Form I-9 (Employment Eligibility Verification)",
+    "Form W-4",
+    "Direct Deposit Form",
+    "Emergency Contact Information",
+    "Non-Disclosure Agreement (NDA)",
+    "Non-Compete Agreement"
+  ]);
+  const [selectedFileName, setSelectedFileName] = useState("");
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
 
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      alert("Please select a file first.");
+  const handleFileNameChange = (e) => {
+    setSelectedFileName(e.target.value);
+  };
+
+  const handleUpload = () => {
+    if (!selectedFile || !selectedFileName) {
+      notification["warning"]({
+        message: "Please select a document and a file before clicking upload."
+      });
       return;
     }
 
-    const formData = new FormData();
-    formData.append("file", selectedFile);
+    // Add the uploaded file to the table with static data
+    const newFile = {
+      fileName: selectedFileName,
+      uploadTime: new Date().toLocaleString(),
+      responsible: "Naga Lakshmi",
+    };
 
-    try {
-      const response = await axios.post(API_URL, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      alert("File uploaded successfully!");
-      setUploadedFiles([...uploadedFiles, response.data]);
-      setSelectedFile(null); // Reset file input
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("Failed to upload file.");
-    }
+    setUploadedFiles([...uploadedFiles, newFile]);
+    setSelectedFile(null);
+    setSelectedFileName(""); // Reset the dropdown
+    notification["success"]({ message: "File uploaded successfully!" });
   };
 
   return (
-    <div class="doc-bg">
-    <SideBar/>
-    <div className="document-container">
-      <h2>Upload Documents</h2>
-      <div className="upload-section">
-        <input type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload} className="upload-button">
-          Upload
-        </button>
+    <div className="doc-bg">
+      <SideBar />
+      <div className="document-container">
+        <h2>Upload Documents</h2>
+        <div className="upload-section">
+          <select
+            value={selectedFileName}
+            onChange={handleFileNameChange}
+            className="file-name-dropdown"
+          >
+            <option value="">Select a document</option>
+            {fileOptions.map((fileName, index) => (
+              <option key={index} value={fileName}>
+                {fileName}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="file-upload" className="custom-file-upload">
+            Choose File
+          </label>
+          <input
+            id="file-upload"
+            type="file"
+            onChange={handleFileChange}
+            className="file-input"
+          />
+
+          <button onClick={handleUpload} className="upload-button">
+            Upload
+          </button>
+        </div>
+
+        <div className="uploaded-files-table">
+          <h3>Your Documents</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>Status</th>
+                <th>Upload Time</th>
+                <th>Responsible</th>
+              </tr>
+            </thead>
+            <tbody>
+              {uploadedFiles.map((file, index) => (
+                <tr key={index}>
+                  <td>{file.fileName}</td>
+                  <td className="uploaded">Upload Completed</td>
+                  <td>{file.uploadTime}</td>
+                  <td>{file.responsible}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div className="uploaded-files">
-        <h3>Uploaded Files</h3>
-        {console.log(uploadedFiles)}
-        <ul>
-          {uploadedFiles.map((file, index) => (
-            
-            <li key={index}>
-              <a href={file.fileUrl} target="_blank" rel="noopener noreferrer">
-                {file.fileName}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
     </div>
   );
 };

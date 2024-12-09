@@ -10,9 +10,9 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 const API_GATEWAY_ID = "0csvixoi5c";
 const SOCKET_API_GATEWAY_ID = "olz92flbad";
-const Room = () => {
+const Room = ({curUser}) => {
   const [messages, setMessages] = useState([]);
-  const [userId, setUserId] = useState("2");
+  const [userId, setUserId] = useState(Math.random().toString());
   const [websocket, setWebsocket] = useState(null);
   const [isSent, setIsSent] = useState(false);
   const webSocket = useRef(null);
@@ -112,7 +112,7 @@ const Room = () => {
         });
         console.log(response)
         setMessages(response.data || []); // 초기 상태가 없을 경우 빈 배열 설정
-        setUserId("2"); // User ID 설정
+        setUserId(Math.random().toString()); // User ID 설정
         // connectToWebSocket(); 
       } catch (error) {
         console.error("Error fetching messages:", error);

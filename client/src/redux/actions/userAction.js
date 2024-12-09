@@ -112,7 +112,7 @@ export const deletePosition = (data) => async (dispatch) => {
 }
 export const getAllPosition = ()=> async (dispatch)=>{
   try{
-    const res = await axios.get(`${baseURL}/api/position/allposition`)
+    const res = await axios.get(`${baseURL}/api/position/all_position`)
     console.log(res)
     dispatch({type:"GET_ALL_POSITION", payload: {all_position: res.data.all_position}})
   }catch(err){

@@ -16,8 +16,8 @@ const Employee = () => {
   const data = [
     {
       key: "1",
-      name: "Edward Jones",
-      position: "Python Developer",
+      name: "Thanuja",
+      position: "SDE2",
       department: "Technical Department",
       hiringLead: "Sammy Stone",
       offerDate: "05/07/2019",
@@ -27,8 +27,8 @@ const Employee = () => {
     },
     {
       key: "2",
-      name: "Kassandra Jenkins",
-      position: "DevOps Engineer",
+      name: "JinHyuk",
+      position: "Software Development Engineer",
       department: "Technical Department",
       hiringLead: "Sammy Stone",
       offerDate: "05/08/2019",
@@ -38,14 +38,14 @@ const Employee = () => {
     },
     {
       key: "3",
-      name: "Laura McClein",
-      position: "Sales Manager",
-      department: "Sales Department",
+      name: "Nagalaksmi",
+      position: "SDE",
+      department: "Technical Department",
       hiringLead: "Sammy Stone",
       offerDate: "05/10/2019",
       acceptDate: "05/12/2019",
       progress: 50,
-      tasks: "5/10",
+      tasks: "1/10",
     },
     // Add more rows here as required
   ];

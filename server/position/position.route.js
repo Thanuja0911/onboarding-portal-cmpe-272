@@ -24,7 +24,7 @@ router.post('/newposition', authorize, is_admin, async(req,res) => {
         return res.status(400).send(d)
     }
 })
-router.get('/allposition', authorize, is_admin, async(req,res) => {
+router.get('/all_position', authorize, is_admin, async(req,res) => {
   let page = !req.query.page ? 1 : Number(req.query.page);
   let dpp = !req.query.dpp ? 20 : Number(req.query.dpp);
   try {
