@@ -1,6 +1,8 @@
-# Employee Onboarding Portal
+# Employee Onboarding Portal - ONE STEP
 
-The **Employee Onboarding Portal** streamlines and simplifies the onboarding process for new hires and HR teams. It provides a centralized platform where new employees can complete forms, upload documents, and update personal information before their start date, reducing administrative delays.
+The **ONE STEP Onboarding Portal** streamlines and simplifies the onboarding process for new hires and HR teams. It provides a centralized platform where new employees can complete forms, upload documents, and update personal information before their start date, reducing administrative delays.
+
+<img width="470" alt="logo1" src="https://github.com/user-attachments/assets/3492573a-da2b-429f-8fd6-8d193b91a3eb">
 
 ## Key Features
 - **Pre-emptive Data Collection**: Employees submit information in advance, enabling HR to verify and resolve discrepancies early.
