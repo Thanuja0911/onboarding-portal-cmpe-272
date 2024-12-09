@@ -137,8 +137,13 @@ cd employee-onboarding-portal
   
   <img width="1462" alt="Screenshot 2024-12-08 at 8 31 38 PM" src="https://github.com/user-attachments/assets/1c27ed54-17b7-4a01-9591-f9b02068243b">
 
-  - **Serverless Functionality (AWS Lambda)**: To minimize server management and optimize cost efficiency, we used **AWS Lambda** for serverless execution. Lambda functions handle specific tasks like sending emails, processing uploaded documents, or triggering workflows, without the need to provision or manage traditional servers. This also improves application performance by enabling on-demand resource scaling.
-  
+  - **Serverless Functionality (AWS Lambda)**: To minimize server management and optimize cost efficiency, we used **AWS Lambda** for serverless execution. Lambda functions handle specific tasks like sending emails, processing uploaded documents, or triggering workflows, without the need to provision or manage traditional servers. This also improves application performance by enabling on-demand resource scaling. When a user clicks on the user panel on the left, the Room Component is triggered. This component sends a request to the WebSocket API to establish a connection. Once the connection is successfully created, a Lambda function is invoked to save the necessary chat room and user information into DynamoDB. When a user sends a message, a request is sent to the REST API to store the chat message in the database.
+  ![Screenshot (1273)](https://github.com/user-attachments/assets/f4ad513e-54e5-494c-9eef-8bd0a7ebc770)
+![Screenshot (1274)](https://github.com/user-attachments/assets/b8cfc4f1-3178-4e71-b758-cf9ecfb191b3)
+![Screenshot (1275)](https://github.com/user-attachments/assets/b7060eb2-d3dc-4d8f-ab3c-1782ab51a991)
+![Screenshot (1276)](https://github.com/user-attachments/assets/c120d705-3d41-4824-aed9-925f714983bd)
+![Screenshot (1277)](https://github.com/user-attachments/assets/5eb4b303-e4e3-4793-889a-269b43fc506e)
+
   - **Database (DynamoDB)**: We used **AWS DynamoDB**, a fully managed NoSQL database, to store and retrieve data in a highly available, scalable manner. DynamoDB is ideal for applications requiring low-latency data access, such as handling real-time onboarding information. With DynamoDB, we can easily scale as the application grows while ensuring fast and reliable access to employee data.
 
 This comprehensive set of features enhances both the user experience and the security of the platform, making it a robust and scalable solution for employee onboarding.
