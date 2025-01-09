@@ -146,7 +146,7 @@ cd employee-onboarding-portal
 
   - **Database (DynamoDB)**: We used **AWS DynamoDB**, a fully managed NoSQL database, to store and retrieve data in a highly available, scalable manner. DynamoDB is ideal for applications requiring low-latency data access, such as handling real-time onboarding information. With DynamoDB, we can easily scale as the application grows while ensuring fast and reliable access to employee data.
 
-This comprehensive set of features enhances both the user experience and the security of the platform, making it a robust and scalable solution for employee onboarding.
+This comprehensive set of features significantly improves the user experience by providing an intuitive and streamlined process for both employees and HR teams, reducing complexity and minimizing manual intervention. Additionally, the platform’s enhanced security measures, such as data encryption, role-based access control, and secure API integrations, ensure that sensitive employee information remains protected. These advancements make the solution not only robust and reliable but also scalable, allowing it to adapt seamlessly to the growing needs of the organization.
 
 ---
 ## Test Cases & Results
